@@ -4,5 +4,7 @@ if(ruben.equals("gay")){
 }else{
 	System.out.println("Vai po caralho meu irmao");
 	System.out.println("cona");
+
+	System.out.println("I'm sure it's a lie");
 }
 
