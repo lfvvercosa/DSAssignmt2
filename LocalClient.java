@@ -38,7 +38,12 @@ public abstract class LocalClient extends Client {
                 super(name);
                 assert(name != null);
         }
-
+        @Override
+        protected boolean forward() {
+        
+        //return super.forward();
+        	return false;
+        }
         /**
          * Fill in here??
          */
