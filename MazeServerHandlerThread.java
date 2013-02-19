@@ -26,11 +26,11 @@ public class MazeServerHandlerThread extends Thread {
 			while (( packetFromClient = (MazePacket) fromClient.readObject()) != null) {
 				/* create a packet to send reply back to client */
 				MazePacket packetToClient = new MazePacket();
-				packetToClient.message = MazePacket.MAZE_REPLY;
+				packetToClient.type = MazePacket.MAZE_REPLY;
 				
 				/* process message */
 				/* just echo in this example */
-				if(packetFromClient.message == MazePacket.MAZE_REQUEST) {
+				if(packetFromClient.type == MazePacket.MAZE_REQUEST) {
 					packetToClient.message = packetFromClient.message;
 					System.out.println("From Client: " + packetFromClient.message);
 				
@@ -42,7 +42,7 @@ public class MazeServerHandlerThread extends Thread {
 				}
 				
 				/* Sending an MAZE_NULL || MAZE_BYE means quit */
-				if (packetFromClient.message == MazePacket.MAZE_NULL) {
+				if (packetFromClient.type == MazePacket.MAZE_NULL) {
 					gotByePacket = true;
 					packetToClient = new MazePacket();
 					//packetToClient.message = MazePacket.MAZE_BYE;
