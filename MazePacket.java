@@ -19,7 +19,7 @@ public class MazePacket implements Serializable {
 	public static final int BROKER_BYE     = 199;*/
 	
 	
-	
+	public static final int MAZE_NULL = -1;
 	public static final int MAZE_REQUEST = 0;
 	public static final int MAZE_REPLY = 1;
 	
@@ -59,6 +59,7 @@ public class MazePacket implements Serializable {
 	
 	/* report errors */
 	/* for part 2/3 */
+	public int type;
 	public int message;
 	public int error_code;
 	
