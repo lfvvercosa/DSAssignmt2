@@ -17,7 +17,15 @@ public class MazePacket implements Serializable {
 	public static final int BROKER_ERROR   = 103;
 	public static final int BROKER_FORWARD = 104;
 	public static final int BROKER_BYE     = 199;*/
+	public int type;
+	public int message;
+	public int error_code;
 	
+	public MazePacket(){}
+	public MazePacket(int type, int message){
+		this.type = type;
+		this.message = message;
+	}
 	
 	public static final int MAZE_NULL = -1;
 	public static final int MAZE_REQUEST = 0;
@@ -59,9 +67,6 @@ public class MazePacket implements Serializable {
 	
 	/* report errors */
 	/* for part 2/3 */
-	public int type;
-	public int message;
-	public int error_code;
 	
 	/* exchange lookup */
 	/* for part 3 */

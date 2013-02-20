@@ -150,13 +150,14 @@ public class Mazewar extends JFrame {
                 // Use braces to force constructors not to be called at the beginning of the
                 // constructor.
                 {
-                        maze.addClient(new RobotClient("Norby"));
-                        maze.addClient(new RobotClient("Robbie"));
-                        maze.addClient(new RobotClient("Clango"));
-                        maze.addClient(new RobotClient("Marvin"));
+//                        maze.addClient(new RobotClient("Norby"));
+//                        maze.addClient(new RobotClient("Robbie"));
+//                        maze.addClient(new RobotClient("Clango"));
+//                        maze.addClient(new RobotClient("Marvin"));
                 }
 
-                
+                GUIManagerInputSingleton.getInstance().setGUIManagerSingletonAttributes(maze);
+                //SocketManager.openSocket(hostname, port);
                 // Create the panel that will display the maze.
                 overheadPanel = new OverheadMazePanel(maze, guiClient);
                 assert(overheadPanel != null);
@@ -222,7 +223,17 @@ public class Mazewar extends JFrame {
          * @param args Command-line arguments.
          */
         public static void main(String args[]) {
-
+        	String hostname;
+        	int port;
+        	
+        	if (args.length == 2) {
+				hostname = args[0];
+				port = Integer.parseInt(args[1]);
+				SocketManager.openSocket(hostname, port);
+			} else {
+				System.err.println("ERROR: Invalid arguments!");
+				System.exit(-1);
+			}
                 /* Create the GUI */
                 new Mazewar();
         }

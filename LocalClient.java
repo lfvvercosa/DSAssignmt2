@@ -38,13 +38,23 @@ public abstract class LocalClient extends Client {
                 super(name);
                 assert(name != null);
         }
-        @Override
-        protected boolean forward() {
-        
-        //return super.forward();
-        	return false;
+        protected void forwardToServer() {
+        	System.out.println("forward");
+        	GUIManagerOutputSingleton.getInstance().sendMovementToServer(MazePacket.MOV_FORWARD);
         }
-        /**
-         * Fill in here??
-         */
+        protected void backupToServer() {
+        	System.out.println("backward");
+        	GUIManagerOutputSingleton.getInstance().sendMovementToServer(MazePacket.MOV_BACKWARD);
+        }
+        protected void turnLeftToServer() {
+        	System.out.println("turn left");
+        	GUIManagerOutputSingleton.getInstance().sendMovementToServer(MazePacket.MOV_TURN_LEFT);
+        }
+        protected void turnRightToServer() {
+        	System.out.println("turn right");
+        	GUIManagerOutputSingleton.getInstance().sendMovementToServer(MazePacket.MOV_TURN_RIGHT);
+        }
+        protected void fireToServer() {
+        	GUIManagerOutputSingleton.getInstance().sendMovementToServer(MazePacket.MOV_SHOOT);
+        }      
 }
