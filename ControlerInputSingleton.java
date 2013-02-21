@@ -10,7 +10,7 @@ public class ControlerInputSingleton {
 		}
 		return instance;
 	}
-	public void updateClients(int movement){
-		GUIManagerInputSingleton.getInstance().updateClients(movement);
+	public void updateClients(MazePacket mazePacket){
+		GUIManagerInputSingleton.getInstance().updateClients(mazePacket.movements);
 	}
 }

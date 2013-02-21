@@ -34,8 +34,8 @@ public class SocketManager {
 			
 		 
 	}
-	public static void sendPacket(int type, int message){
-		MazePacket mazePacket = new MazePacket(type, message);
+	public static void sendPacket(int type, Movement movement){
+		MazePacket mazePacket = new MazePacket(type, movement);
 		try {
 			outputStream.writeObject(mazePacket);
 			System.out.println("A packet's been sent to the server");

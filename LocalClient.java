@@ -40,21 +40,26 @@ public abstract class LocalClient extends Client {
         }
         protected void forwardToServer() {
         	System.out.println("forward");
-        	GUIManagerOutputSingleton.getInstance().sendMovementToServer(MazePacket.MOV_FORWARD);
+        	GUIManagerOutputSingleton.getInstance()
+        		.sendMovementToServer(new Movement(getName(),MazePacket.MOV_FORWARD));
         }
         protected void backupToServer() {
         	System.out.println("backward");
-        	GUIManagerOutputSingleton.getInstance().sendMovementToServer(MazePacket.MOV_BACKWARD);
+        	GUIManagerOutputSingleton.getInstance()
+        		.sendMovementToServer(new Movement(getName(),MazePacket.MOV_BACKWARD));
         }
         protected void turnLeftToServer() {
         	System.out.println("turn left");
-        	GUIManagerOutputSingleton.getInstance().sendMovementToServer(MazePacket.MOV_TURN_LEFT);
+        	GUIManagerOutputSingleton.getInstance()
+        		.sendMovementToServer(new Movement(getName(),MazePacket.MOV_TURN_LEFT));
         }
         protected void turnRightToServer() {
         	System.out.println("turn right");
-        	GUIManagerOutputSingleton.getInstance().sendMovementToServer(MazePacket.MOV_TURN_RIGHT);
+        	GUIManagerOutputSingleton.getInstance()
+        		.sendMovementToServer(new Movement(getName(),MazePacket.MOV_TURN_RIGHT));
         }
         protected void fireToServer() {
-        	GUIManagerOutputSingleton.getInstance().sendMovementToServer(MazePacket.MOV_SHOOT);
+        	GUIManagerOutputSingleton.getInstance()
+        		.sendMovementToServer(new Movement(getName(),MazePacket.MOV_SHOOT));
         }      
 }

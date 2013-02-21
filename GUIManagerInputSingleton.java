@@ -1,4 +1,7 @@
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Queue;
 
 
 public class GUIManagerInputSingleton {
@@ -17,15 +20,27 @@ public class GUIManagerInputSingleton {
 		this.maze = maze;
 	}
 	//TODO Extend this method to handle queue
-	public void updateClients(int movement){
-		Iterator clientsIterator = maze.getClients();
-		Client client;
+	public void updateClients(Queue<Movement> movements){
+		Map<String, Client> clientsMap = createClientsMap();
+		Movement movement;
 		
-		while(clientsIterator.hasNext()){
-			client = (Client)clientsIterator.next();
-			updateClient(client, movement);
-			
+		while(!movements.isEmpty()){
+			movement = movements.remove();
+			if(clientsMap.get(movement.getName()) != null){
+				updateClient(clientsMap.get(movement.getName()), movement.getMovement());
+				
+			}
 		}
+	}
+	public Map<String, Client> createClientsMap(){
+		Iterator<Client> clientsIterator = maze.getClients();
+		Map<String, Client> clientsMap = new HashMap<String, Client>();
+		Client client;
+		while(clientsIterator.hasNext()){
+			client = clientsIterator.next();
+			clientsMap.put(new String(client.getName()), client);
+		}
+		return clientsMap;
 	}
 	public void updateClient(Client client, int movement){
 		switch(movement){

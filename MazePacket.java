@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Queue;
  /**
  * MazePacket
  * ============
@@ -10,6 +11,10 @@ import java.io.Serializable;
 
 public class MazePacket implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/* define constants */
 	/* for part 1/2/3 */
 /*	public static final int BROKER_NULL    = 0;
@@ -19,12 +24,22 @@ public class MazePacket implements Serializable {
 	public static final int BROKER_BYE     = 199;*/
 	public int type;
 	public int message;
+	public Movement movement;
+	Queue<Movement> movements;
 	public int error_code;
 	
 	public MazePacket(){}
 	public MazePacket(int type, int message){
 		this.type = type;
 		this.message = message;
+	}
+	public MazePacket(int type, Queue<Movement> movements){
+		this.type = type;
+		this.movements = movements;
+	}
+	public MazePacket(int type, Movement movement){
+		this.type = type;
+		this.movement = movement;
 	}
 	
 	public static final int MAZE_NULL = -1;
@@ -37,38 +52,6 @@ public class MazePacket implements Serializable {
 	public static final int MOV_TURN_LEFT = 5;
 	public static final int MOV_SHOOT     = 6;
 	public static final int MOV_QUIT     = 7;
-	/* for part 2/3 */
-	/*public static final int EXCHANGE_ADD    = 201;
-	public static final int EXCHANGE_UPDATE = 202;
-	public static final int EXCHANGE_REMOVE = 203;
-	public static final int EXCHANGE_REPLY  = 204;*/
 	
-	
-	/* for part 3 */
-	/*public static final int LOOKUP_REQUEST  = 301;
-	public static final int LOOKUP_REPLY    = 302;
-	public static final int LOOKUP_REGISTER = 303;*/
-	
-	/* error codes */
-	/* for part 2/3 */
-	/*public static final int ERROR_INVALID_SYMBOL   = -101;
-	public static final int ERROR_OUT_OF_RANGE     = -102;
-	public static final int ERROR_SYMBOL_EXISTS    = -103;
-	public static final int ERROR_INVALID_EXCHANGE = -104;*/
-	
-	/* message header */
-	/* for part 1/2/3 */
-	
-	/* request quote */
-	/* for part 1/2/3 */
-	
-	/* quote */
-	/* for part 1/2/3 */
-	
-	/* report errors */
-	/* for part 2/3 */
-	
-	/* exchange lookup */
-	/* for part 3 */
 	
 }

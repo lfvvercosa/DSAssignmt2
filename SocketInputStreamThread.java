@@ -29,7 +29,7 @@ public class SocketInputStreamThread extends Thread{
 					packet = (MazePacket) inputStream.readObject();
 					if(packet.type == MazePacket.MAZE_REPLY){
 						System.out.println("Message received: "+packet.message);
-						ControlerInputSingleton.getInstance().updateClients(packet.message);
+						ControlerInputSingleton.getInstance().updateClients(packet);
 					}
 				}
 			} catch (ClassNotFoundException e) {

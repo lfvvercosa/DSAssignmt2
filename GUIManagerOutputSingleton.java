@@ -13,7 +13,7 @@ public class GUIManagerOutputSingleton {
 		}
 		return instance;
 	}
-	public void sendMovementToServer(int movement){
+	public void sendMovementToServer(Movement movement){
 		ControlerOutputSingleton.getInstance().sendMovementToServer(movement);
 	}
 }

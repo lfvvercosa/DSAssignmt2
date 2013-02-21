@@ -1,9 +1,16 @@
-import java.net.*;
-import java.io.*;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class MazeServer {
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = null;
+        
+    	Queue<Movement> movements = new LinkedList<Movement>();
+    	List<Socket> clients = new LinkedList<Socket>();
+    	ServerSocket serverSocket = null;
         boolean listening = true;
 
         try {
@@ -19,7 +26,13 @@ public class MazeServer {
         }
 
         while (listening) {
-        	new MazeServerHandlerThread(serverSocket.accept()).start();
+        	Socket client = serverSocket.accept();
+        	new MazeServerHandlerThread(client, movements).start();
+        	clients.add(client);
+        	if(clients.size() == 1){
+        		System.out.println("MovementsCollecotrThread was created");
+        		new MovementsCollectorThread(clients, movements).start();
+        	}
         }
 
         serverSocket.close();

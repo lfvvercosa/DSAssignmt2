@@ -10,7 +10,7 @@ public class ControlerOutputSingleton {
 		}
 		return instance;
 	}
-	public void sendMovementToServer(int movement){
+	public void sendMovementToServer(Movement movement){
 		SocketManager.sendPacket(MazePacket.MAZE_REQUEST,movement);
 	}
 }
