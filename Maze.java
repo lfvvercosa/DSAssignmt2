@@ -57,7 +57,18 @@ public abstract class Maze {
      * @param client {@link Client} to be added to the {@link Maze}.
      */
     public abstract void addClient(Client client);
-
+    
+    public abstract void addClient(Client client, DirectedPoint directedPoint);
+    
+    public abstract DirectedPoint returnMoveClientForward(String clientName);
+    
+    public abstract DirectedPoint returnMoveClientBackward(String clientName);
+    
+    public abstract DirectedPoint returnMoveClient(String clientName, Direction d);
+    
+    public abstract DirectedPoint returnRotateClientLeft(String clientName);
+    
+    public abstract DirectedPoint returnRotateClientRight(String clientName);
     /** 
      * Create a new {@link Projectile} from the specified {@link Client}
      * @param client {@link Client} that is firing.
@@ -75,14 +86,14 @@ public abstract class Maze {
      * in the {@link Maze}.
      * @param client The {@link Client} being located.
      * @return A {@link Point} describing the location of the client. */
-    public abstract Point getClientPoint(Client client);
+    public abstract Point getClientPoint(String clientName);
     
     /** 
      * Find out the cardinal direction a {@link Client} is facing.
      * @param client The {@link Client} being queried.
      * @return The orientation of the specific {@link Client} as a {@link Direction}.
      */
-    public abstract Direction getClientOrientation(Client client);
+    public abstract Direction getClientOrientation(String clientName);
 
     /** 
      * Attempt to move a {@link Client} in the {@link Maze} forward.

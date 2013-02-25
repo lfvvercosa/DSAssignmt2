@@ -41,25 +41,25 @@ public abstract class LocalClient extends Client {
         protected void forwardToServer() {
         	System.out.println("forward");
         	GUIManagerOutputSingleton.getInstance()
-        		.sendMovementToServer(new Movement(getName(),MazePacket.MOV_FORWARD));
+        		.sendMovingMovementToServer(new Movement(getName(),MazePacket.MOV_FORWARD));
         }
         protected void backupToServer() {
         	System.out.println("backward");
         	GUIManagerOutputSingleton.getInstance()
-        		.sendMovementToServer(new Movement(getName(),MazePacket.MOV_BACKWARD));
+        		.sendMovingMovementToServer(new Movement(getName(),MazePacket.MOV_BACKWARD));
         }
         protected void turnLeftToServer() {
         	System.out.println("turn left");
         	GUIManagerOutputSingleton.getInstance()
-        		.sendMovementToServer(new Movement(getName(),MazePacket.MOV_TURN_LEFT));
+        		.sendRotatingMovementToServer(new Movement(getName(),MazePacket.MOV_TURN_LEFT));
         }
         protected void turnRightToServer() {
         	System.out.println("turn right");
         	GUIManagerOutputSingleton.getInstance()
-        		.sendMovementToServer(new Movement(getName(),MazePacket.MOV_TURN_RIGHT));
+        		.sendRotatingMovementToServer(new Movement(getName(),MazePacket.MOV_TURN_RIGHT));
         }
         protected void fireToServer() {
         	GUIManagerOutputSingleton.getInstance()
-        		.sendMovementToServer(new Movement(getName(),MazePacket.MOV_SHOOT));
+        		.sendShotMovementToServer(new Movement(getName(),MazePacket.MOV_SHOOT));
         }      
 }

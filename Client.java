@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
 USA.
 */
   
+import java.io.Serializable;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -26,9 +27,14 @@ import java.util.Iterator;
  * @author Geoffrey Washburn &lt;<a href="mailto:geoffw@cis.upenn.edu">geoffw@cis.upenn.edu</a>&gt;
  * @version $Id: Client.java 343 2004-01-24 03:43:45Z geoffw $
  */
-public abstract class Client {
+public abstract class Client implements Serializable{
 
         /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+		/**
          * Register this {@link Client} as being contained by the specified
          * {@link Maze}.  Naturally a {@link Client} cannot be registered with
          * more than one {@link Maze} at a time.
@@ -65,7 +71,7 @@ public abstract class Client {
          */
         public Point getPoint() {
                 assert(maze != null);
-                return maze.getClientPoint(this);
+                return maze.getClientPoint(getName());
         }
         
         /**
@@ -74,7 +80,7 @@ public abstract class Client {
          */
         public Direction getOrientation() {
                 assert(maze != null);
-                return maze.getClientOrientation(this);
+                return maze.getClientOrientation(getName());
         }
        
         /**
@@ -230,6 +236,10 @@ public abstract class Client {
                         ClientListener cl = (ClientListener)o;
                         cl.clientUpdate(this, ce);
                 } 
+        }
+        @Override
+        public int hashCode() {
+        	return getName().hashCode();
         }
         
 }

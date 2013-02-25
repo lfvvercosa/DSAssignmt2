@@ -152,8 +152,13 @@ public class OverheadMazePanel extends JPanel implements MazeListener {
                 FontRenderContext frc = g2.getFontRenderContext(); 
                 
                 // Obtain the location of the distinguished client
-                Point cp = maze.getClientPoint(client);
-                
+//                try {
+//					Thread.sleep(3000);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+                //System.out.println("o ponto do client "+client.getName()+" eh "+ maze.getClientPoint(client.getName()));
+                Point cp = maze.getClientPoint(client.getName());
                 for(int i = 0; i < p.getY(); i++) {
                         for(int j = 0; j < p.getX(); j++) {
                                 boolean cellVisible = true;

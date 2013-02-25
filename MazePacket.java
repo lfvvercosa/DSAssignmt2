@@ -26,6 +26,8 @@ public class MazePacket implements Serializable {
 	public int message;
 	public Movement movement;
 	Queue<Movement> movements;
+	Point pointToBorn;
+	
 	public int error_code;
 	
 	public MazePacket(){}

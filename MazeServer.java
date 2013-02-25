@@ -1,8 +1,10 @@
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 public class MazeServer {
@@ -10,6 +12,7 @@ public class MazeServer {
         
     	Queue<Movement> movements = new LinkedList<Movement>();
     	List<Socket> clients = new LinkedList<Socket>();
+    	Map<String, DirectedPoint> clientsLastMove = new HashMap<String, DirectedPoint>();
     	ServerSocket serverSocket = null;
         boolean listening = true;
 
@@ -27,10 +30,10 @@ public class MazeServer {
 
         while (listening) {
         	Socket client = serverSocket.accept();
-        	new MazeServerHandlerThread(client, movements).start();
+        	new MazeServerHandlerThread(client, movements, clientsLastMove).start();
         	clients.add(client);
         	if(clients.size() == 1){
-        		System.out.println("MovementsCollecotrThread was created");
+        		System.out.println("MovementsCollectorThread was created");
         		new MovementsCollectorThread(clients, movements).start();
         	}
         }

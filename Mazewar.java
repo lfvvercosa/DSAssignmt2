@@ -126,7 +126,8 @@ public class Mazewar extends JFrame {
                 // Create the maze
                 maze = new MazeImpl(new Point(mazeWidth, mazeHeight), mazeSeed);
                 assert(maze != null);
-                
+                GUIManagerInputSingleton.getInstance().setGUIManagerSingletonAttributes(maze);
+                GUIManagerOutputSingleton.getInstance().setGUIManagerSingletonAttributes(maze);
                 // Have the ScoreTableModel listen to the maze to find
                 // out how to adjust scores.
                 ScoreTableModel scoreModel = new ScoreTableModel();
@@ -145,18 +146,18 @@ public class Mazewar extends JFrame {
                 // Create the GUIClient and connect it to the KeyListener queue
                 guiClient = new GUIClient(name);
                 maze.addClient(guiClient);
+                
                 this.addKeyListener(guiClient);
                 
                 // Use braces to force constructors not to be called at the beginning of the
                 // constructor.
                 {
-                        //maze.addClient(new RemoteClient("remote"));
+                       // maze.addClient(new RemoteClient("remote"));
 //                        maze.addClient(new RobotClient("Robbie"));
 //                        maze.addClient(new RobotClient("Clango"));
 //                        maze.addClient(new RobotClient("Marvin"));
                 }
 
-                GUIManagerInputSingleton.getInstance().setGUIManagerSingletonAttributes(maze);
                 //SocketManager.openSocket(hostname, port);
                 // Create the panel that will display the maze.
                 overheadPanel = new OverheadMazePanel(maze, guiClient);
@@ -213,6 +214,11 @@ public class Mazewar extends JFrame {
 
                 // Let the magic begin.
                 setVisible(true);
+                try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
                 overheadPanel.repaint();
                 this.requestFocusInWindow();
         }
